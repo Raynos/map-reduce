@@ -42,10 +42,9 @@ sum('/tmp/map-reduce-sum-test-range', function (err) {
 
   var mr = MR({
       path: '/tmp/map-reduce-sum-test-range'
-    , start: '00000'
-    , end: '00002'
+    , start: '000000'
+    , end: '000020'
     , map: function (key, value) {
-      console.log("v", value)
       this.emit("const", value)
     }
     , reduce: function (big, little, key) {
@@ -54,10 +53,8 @@ sum('/tmp/map-reduce-sum-test-range', function (err) {
     , initial: 0
   }).force()
 
-  mr.on('reduce', function (key, sum) {
-    console.log('range', sum)
-    // 0, 1, 2 and 10000 are the individuals. Then 10-19,
-    // 100-199 and 1000-1999
-    assert.equal(JSON.parse(sum), (19 * 20) / 2)
-  })
+  mr.on('reduce', mac(function (key, sum) {
+    console.log('range', sum, key)
+    assert.equal(JSON.parse(sum), (20 * 21) / 2)
+  }).twice())
 })
