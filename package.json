@@ -9,20 +9,23 @@
   },
   "author": "Dominic Tarr <dominic.tarr@gmail.com> (http://bit.ly/dominictarr)",
   "dependencies": {
-    "levelup": "~0.2.1",
     "through": "~1.1.1",
-    "from": "~0.0.2"
+    "from": "~0.0.2",
+    "levelidb": "~0.1.2"
   },
   "devDependencies": {
-    "rimraf": "~2.0.2",
     "write-stream": "~0.4.3",
-    "pad": "0.0.3",
+    "pad": "git://github.com/Raynos/node-pad.git",
     "tap": "~0.3.2",
     "testem": "~0.2.25",
     "macgyver": "~1.9",
-    "optimist": "0.3.5"
+    "optimist": "0.3.5",
+    "browserify": "~1.16.4",
+    "end-stream": "~0.1.0"
   },
   "scripts": {
-    "test": "set -e; for t in test/*.js; do node $t; done"
+    "test": "set -e; for t in test/*.js; do node $t; done",
+    "testem": "testem",
+    "bundle": "browserify ./test/browser/index.js -o test-bundle.js"
   }
 }

@@ -1,11 +1,12 @@
 
 var levelup = require('levelup')
-var rimraf  = require('rimraf')
 var pad     = require('pad')
+var EndStream = require('end-stream')
+var del = require("./purge")
 
 function genSum (path, cb) {
-  rimraf(path, function () {
-    levelup(path, {createIfMissing: true}, function (err, db) {
+  levelup(path, {createIfMissing: true}, function (err, db) {
+    del(db, function () {
       var l = 1e3, i = 0
       var stream = db.writeStream()
       while(l--)

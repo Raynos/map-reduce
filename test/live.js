@@ -1,11 +1,14 @@
 var MR      = require('..')
 var assert  = require('assert')
 var through = require('through')
-var rimraf  = require('rimraf')
+var levelidb = require('levelidb')
+var purge  = require('./fixtures/purge')
 
-var dir ='/tmp/map-reduce-live-test' 
+var dir ='/tmp/map-reduce-live-test'
 
-rimraf(dir, function () {
+purge(levelidb(dir, {
+  createIfMissing: true
+}), function () {
 
   var vowels = 'aeiou'.split('')
 
@@ -40,11 +43,11 @@ rimraf(dir, function () {
       console.log('passed')
       //mr.readStream({group: ['even']})
         //.pipe(through(console.log))
-    } else if(key[0] == 'vowel') 
+    } else if(key[0] == 'vowel')
       assert.equal(Number(sum), 60)
-    else if(key[0] == 'consonant') 
+    else if(key[0] == 'consonant')
       assert.equal(Number(sum), 90)
-    
+
   })
 
 })

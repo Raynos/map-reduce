@@ -1,6 +1,6 @@
 var EventEmitter = require('events').EventEmitter
 var through = require('through')
-var levelup = require('levelup')
+var levelup = require('levelidb')
 
 function sk (ary) {
   if(!Array.isArray(ary))
