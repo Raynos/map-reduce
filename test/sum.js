@@ -1,7 +1,7 @@
 
 var MR      = require('..')
 var sum     = require('./fixtures/sum')
-var levelup = require('levelup')
+var levelidb = require('levelidb')
 var assert  = require('assert')
 var through = require('through')
 var mac     = require('macgyver')().autoValidate()

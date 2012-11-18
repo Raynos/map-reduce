@@ -1,16 +1,16 @@
 
 var queue   = require('../queue')
-var levelup = require('levelup')
+var levelidb = require('levelidb')
 var opts    = require('optimist').argv
 
 var path = '/tmp/map-reduce-queue-test'
 
 /**
 So this isn't really a test...
-it's just a script that I run, 
+it's just a script that I run,
 and then look at the output to see if it looks right.
 
-run 
+run
 
 `node test/queue.js --crash`
 
@@ -21,7 +21,7 @@ Guess could run this as a child process a  few times,
 and test that right number of jobs eventually complete.
 **/
 
-levelup(path, {createIfMissing: true}, function (err, db) {
+levelidb(path, {createIfMissing: true}, function (err, db) {
   queue(db, '~QUEUE', function (key, done) {
     console.log('START_WORK', key)
     setTimeout(function () {

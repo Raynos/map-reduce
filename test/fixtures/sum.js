@@ -1,11 +1,11 @@
 
-var levelup = require('levelup')
+var levelidb = require('levelidb')
 var pad     = require('pad')
 var EndStream = require('end-stream')
 var del = require("./purge")
 
 function genSum (path, cb) {
-  levelup(path, {createIfMissing: true}, function (err, db) {
+  levelidb(path, {createIfMissing: true}, function (err, db) {
     del(db, function () {
       var l = 1e3, i = 0
       var stream = db.writeStream()
