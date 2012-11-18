@@ -11,7 +11,7 @@
   "dependencies": {
     "through": "~1.1.1",
     "from": "~0.0.2",
-    "levelidb": "~0.1.2"
+    "levelidb": "~0.1.6"
   },
   "devDependencies": {
     "write-stream": "~0.4.3",
@@ -26,6 +26,6 @@
   "scripts": {
     "test": "set -e; for t in test/*.js; do node $t; done",
     "testem": "testem",
-    "bundle": "browserify ./test/browser/index.js -o test-bundle.js"
+    "bundle": "browserify --debug ./test/browser/index.js -o test-bundle.js"
   }
 }

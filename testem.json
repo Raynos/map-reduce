@@ -4,15 +4,14 @@
             "command": "npm test"
         }
     }
+    , "serve_files": [
+        "test-bundle.js"
+    ]
     , "src_files": [
         "./**/*.js"
-    ]
-    , "server_files": [
-        "test-bundle.js"
     ]
     , "before_tests": "npm run bundle"
     , "on_exit": "rm test-bundle.js"
     , "launch_in_dev": [
-        "tests"
     ]
 }

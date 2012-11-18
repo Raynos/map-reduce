@@ -1,7 +1,8 @@
 
 var queue   = require('../queue')
 var levelidb = require('levelidb')
-var opts    = require('optimist').argv
+
+var crash = 0.5
 
 var path = '/tmp/map-reduce-queue-test'
 
@@ -25,7 +26,9 @@ levelidb(path, {createIfMissing: true}, function (err, db) {
   queue(db, '~QUEUE', function (key, done) {
     console.log('START_WORK', key)
     setTimeout(function () {
-      if(opts.crash && Math.random() < opts.crash) process.exit(1)
+      if(Math.random() < crash) {
+        process.exit && process.exit(1)
+      }
       console.log('DONE_WORK', key)
       done()
     }, 500)
