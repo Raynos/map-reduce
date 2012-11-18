@@ -1,5 +1,5 @@
 
-var levelup = require('levelup')
+var levelup = require('levelidb')
 var rimraf  = require('rimraf')
 
 // if(!module.parent) {

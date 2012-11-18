@@ -27,7 +27,7 @@ levelidb(path, {createIfMissing: true}, function (err, db) {
     console.log('START_WORK', key)
     setTimeout(function () {
       if(Math.random() < crash) {
-        process.exit && process.exit(1)
+        process.exit && process.exit(0)
       }
       console.log('DONE_WORK', key)
       done()
